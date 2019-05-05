@@ -1,0 +1,28 @@
+\section{Introduction}
+A very important task in the conservation of humpback whales, of course, is the ability to identify them in the wild. For years the task of uniquely identifying a whale based on just a glance at their tailfluke has been done manually by scientists. While difficult, this has generated enough data for us data scientists to be attempt to automate the process. Given $\sim$20000 images of the tailflukes of humpback whales, could we automate the identification of these whales? For our final project, we planned to take up this task. 
+
+\subsection{The Data}
+
+The dataset is the HappyWhale dataset of images of humpback whales' tails, and our job was to identify the whale to whom the tail belongs uniquely, or state that it was a new whale if we could not. The training set consists of 25,361 images of 5004 whales known whales, and some unidentified whales. The test set consists of 7960 images. \\
+
+It is obvious that the problem is an instance of image classification with a large number of classes, however, when we took a look at the dataset, we discovered that there were large class imbalances in the dataset. There were over 9000 instances of unknown whales, and only 73 instances of the most frequent known whale. Table 1 shows the value counts of the first few most common whales in the training set. Here we see our first problem. The \textit{new\_whale} class is vastly over-represented.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|}\hline
+\textbf{Whale Id} & \textbf{Count}\\ \hline
+new\_whale  & 9664\\ \hline
+w\_23a388d  & 73\\ \hline
+w\_9b5109b  & 65\\ \hline
+w\_9c506f6  & 62\\ \hline
+w\_0369a5c  & 61\\ \hline
+\end{tabular}
+\qquad\qquad
+\begin{tabular}{|c|c|}\hline
+\textbf{Threshold} & \textbf{\%  Under}\\ \hline
+new\_whale  & 9664\\ \hline
+w\_23a388d  & 73\\ \hline
+w\_9b5109b  & 65\\ \hline
+
+\end{tabular}
+\end{table}

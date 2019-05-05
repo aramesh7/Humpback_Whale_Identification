@@ -1,26 +1,2 @@
-\section{Cleaning Approach}
-\paragraph{Requirements}
-\begin{enumerate}[label=\alph*.,nolistsep]
-	\item If you're using OpenRefine, these are what we're expecting to see: Why are you using OpenRefine? Why do you think it's suitable for your cleaning goals? Document the result of this phase, both in narrative form and with supplemental information (e.g., which columns were cleaned and what changes were made?). Can you quantify the results of your efforts? Also provide provenance information from OpenRefine. Pay close attention to what OpenRefine includes and does not include in its Operation History! If important information is missing in the latter, provide that information in other ways, e.g., explaining things in the narrative.
-	\item If you find that certain steps are not well suited for OpenRefine (e.g., due to scalability or other issues), consider applying an alternative solution, e.g., using Python, R, or another tool such as Trifacta Data Wrangler, Tableau, etc. Document your choice and provide the corresponding similar artefacts as OpenRefine (i.e., narrative and supplemental files). If you chose a script-based alternative (e.g., Python) we encourage you to provide a Jupyter notebook as well. That way, you can combine narrative text, explanations, and outputs along with the actual code in one place. Your report should then also include a link to your notebook (output).
-\end{enumerate}
+\section{Approaches}
 
-\subsection{Data Wrangling}
-\begin{itemize}[nolistsep]
-	\item put sql schema here
-	\item elaborate on why we made certain choices (e.g. why are \texttt{args} and \texttt{ret\_val} columns in \texttt{calls} table \texttt{LONGTEXT}?)
-	\item 351,147 scripts
-	\item 6,966,555 executions
-	\item \textbf{287,415,653 function calls} (+ 287,987 ``dirty'' ones)
-\end{itemize}
-
-\subsection{Data Cleaning}
-We used grep to identify hex strings that appeared in our ``dirty'' dataset.
-We primarily used Python to clean them.
-\begin{itemize}[nolistsep]
-	\item we clean non-ascii characters that are shown as hex strings
-	\item for example, what should \texttt{\textbackslash xe3\textbackslash x83\textbackslash x96\textbackslash xe3\textbackslash x83\textbackslash xa9\textbackslash xe3\textbackslash x83\textbackslash xb3\textbackslash xe3\textbackslash x83\textbackslash x89} look like? \begin{CJK}{UTF8}{gbsn}\texttt{ブランド}\end{CJK} (utf-8 japanese)
-	\item 5,239,239 hex strings found from 287,987 function calls
-	\item 189,920 unique hex strings to be ``cleaned''
-	\item discuss how we cleaned them
-\end{itemize}
