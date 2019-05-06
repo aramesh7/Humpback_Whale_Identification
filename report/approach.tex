@@ -1,2 +1,49 @@
-\section{Approaches}
+\section{Approaches and Methods}
 
+\subsection{Overview of Methods}
+Our plan of attack for this task was to try a few different types of methods and see which worked the best. In our proposal, we wanted to try the following:
+\begin{itemize}
+	\item Probabilistic models like Naive Bayes.
+	\item Decision forests (Random Forest Classifiers)
+\end{itemize}
+
+However, we tried these approaches, and found that they performed very poorly on high dimensional, structured data like images. The assumptions on feature distributions in probabilistic models like Gaussian Naive Bayes do not hold at all here, and are therefore inappropriate. Models like RandomForest required extensive feature extraction, and did not give us correspondingly better results. Here we have shown a few methods that we thought were worth discussing. Our general pipeline consisted of 3 interconnected stages. The parts within a stage were options among many.
+ 
+\begin{enumerate}
+	\item \textbf{Stage 1 : Preprocessing}
+	\begin{itemize}
+		\item Data Preprocessing
+		\begin{itemize}
+			\item Resizing
+			\item Grayscaling
+			\item Scale Normalization
+		\end{itemize}
+		\item Data Augmentation: This consisted of primarily adding images to our dataset.
+		\begin{itemize}
+			\item Randomly Flipped/Rotated/Cropped and Resized copies
+			\item Correcting class imbalances by oversampling under-represented classes. This was done by just performing some random
+		\end{itemize}
+		\item Keypoint detection and Matching
+	\end{itemize}
+	\item \textbf{Stage 2: Training}
+	\begin{itemize}
+		\item SVMs
+		\item Pretrained ImageNet models (ResNet18, ResNet152 ...)
+		\item Siamese Networks (One-Shot Learning)
+	\end{itemize}
+	\item \textbf{Stage 3: Postprocessing and Testing}
+	\begin{itemize}
+		\item Confidence Adjustment to account for unidentified whales
+		\item Classwise analysis, Sensitivity, Recall, Confusion Matrix
+	\end{itemize}
+\end{enumerate}
+
+We'll describe each of the three methods we tried to implement and discuss their merits and shortcomings.
+
+\subsection{Keypoint Extraction, Matching and Support Vector Classification}
+
+One of the first and most naive implementations we tried was identifying keypoints in the training images and trying to match them to keypoints in test images with a brute-force matcher using \textit{opencv}. 
+
+\subsubsection{Keypoint Extraction}
+
+We tried two main feature extraction methods namely, SIFT and ORB. Thankfully, there exists at least one version of opencv that provides functions for both detection and descriptor compuatation methods. Let's first 
