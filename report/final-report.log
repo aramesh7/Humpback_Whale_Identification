@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.1.25)  5 MAY 2019 23:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.1.25)  6 MAY 2019 02:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -343,22 +343,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--31
 [1
 
 {/usr/local/texlive/2018basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<images/w_d3b46e7.png, id=47, 376.40625pt x 145.54375pt>
+<images/w_d3b46e7.png, id=67, 376.40625pt x 145.54375pt>
 File: images/w_d3b46e7.png Graphic file (type png)
 <use images/w_d3b46e7.png>
 Package pdftex.def Info: images/w_d3b46e7.png  used on input line 34.
 (pdftex.def)             Requested size: 164.41353pt x 63.57529pt.
-<images/w_581ba42.png, id=49, 376.40625pt x 187.70125pt>
+<images/w_581ba42.png, id=69, 376.40625pt x 187.70125pt>
 File: images/w_581ba42.png Graphic file (type png)
 <use images/w_581ba42.png>
 Package pdftex.def Info: images/w_581ba42.png  used on input line 38.
 (pdftex.def)             Requested size: 164.41353pt x 81.9902pt.
-<images/new_whale.png, id=50, 376.40625pt x 129.48375pt>
+<images/new_whale.png, id=70, 376.40625pt x 129.48375pt>
 File: images/new_whale.png Graphic file (type png)
 <use images/new_whale.png>
 Package pdftex.def Info: images/new_whale.png  used on input line 42.
 (pdftex.def)             Requested size: 164.41353pt x 56.56007pt.
-<images/w_dd944b7.png, id=51, 376.40625pt x 207.77625pt>
+<images/w_dd944b7.png, id=71, 376.40625pt x 207.77625pt>
 File: images/w_dd944b7.png Graphic file (type png)
 <use images/w_dd944b7.png>
 Package pdftex.def Info: images/w_dd944b7.png  used on input line 46.
@@ -387,15 +387,26 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 6.
  [2 <./images/w_d3b46e7.png> <./images/w_581ba42.png> <./images/new_whale.png> 
-<./images/w_dd944b7.png>]) (./results.tex) (./conclusion.tex) (./final-report.b
-bl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 42.
- [3]
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 42.
+<./images/w_dd944b7.png>] [3]
+<images/kp_side_by_side.png, id=93, 484.81125pt x 689.57625pt>
+File: images/kp_side_by_side.png Graphic file (type png)
+<use images/kp_side_by_side.png>
+Package pdftex.def Info: images/kp_side_by_side.png  used on input line 53.
+(pdftex.def)             Requested size: 234.8775pt x 334.08632pt.
+<images/orb_matches.png, id=94, 379.4175pt x 129.48375pt>
+File: images/orb_matches.png Graphic file (type png)
+<use images/orb_matches.png>
+Package pdftex.def Info: images/orb_matches.png  used on input line 58.
+(pdftex.def)             Requested size: 375.80544pt x 128.25449pt.
+ [4 <./images/kp_side_by_side.png>]) (./results.tex)
+(./conclusion.tex) (./roles.tex) [5 <./images/orb_matches.png>]
+(./final-report.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 45.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 45.
  (./final-report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 42.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 42.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 45.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 45.
 
 
 Package rerunfilecheck Warning: File `final-report.out' has changed.
@@ -403,29 +414,32 @@ Package rerunfilecheck Warning: File `final-report.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `final-report.out':
-(rerunfilecheck)             Before: 55349F1310B0B32297A2969DC48BBD2C;451
-(rerunfilecheck)             After:  B2C3302E7F74C0794A469AE087FE8F9A;529.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 42.
+(rerunfilecheck)             Before: 06184A828A8BE6A769DA48D7FE55BC89;769
+(rerunfilecheck)             After:  816FD8A58FF617C697B08F95C6500421;779.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 45.
  ) 
 Here is how much of TeX's memory you used:
- 6624 strings out of 494091
- 102956 string characters out of 6163523
- 196844 words of memory out of 5000000
- 10227 multiletter control sequences out of 15000+600000
+ 6656 strings out of 494091
+ 103533 string characters out of 6163523
+ 197004 words of memory out of 5000000
+ 10243 multiletter control sequences out of 15000+600000
  9455 words of font info for 33 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  42i,9n,40p,829b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
-2.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr10.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr12.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr17.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmti12.pfb>
-Output written on final-report.pdf (4 pages, 407769 bytes).
+pdfTeX warning (dest): name{subsection.2.4} has been referenced but does not 
+exist, replaced by a fixed one
+
+</usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
+pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+10.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr12.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr17.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy10.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmti12.pfb>
+Output written on final-report.pdf (6 pages, 884295 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
- 18 named destinations out of 1000 (max. 500000)
- 77 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 144 PDF objects out of 1000 (max. 8388607)
+ 116 compressed objects within 2 object streams
+ 29 named destinations out of 1000 (max. 500000)
+ 127 words of extra memory for PDF output out of 10000 (max. 10000000)
 

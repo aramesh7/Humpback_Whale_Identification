@@ -27,7 +27,7 @@ However, we tried these approaches, and found that they performed very poorly on
 	\end{itemize}
 	\item \textbf{Stage 2: Training}
 	\begin{itemize}
-		\item SVMs
+		\item K-Nearest Neighbors
 		\item Pretrained ImageNet models (ResNet18, ResNet152 ...)
 		\item Siamese Networks (One-Shot Learning)
 	\end{itemize}
@@ -40,10 +40,34 @@ However, we tried these approaches, and found that they performed very poorly on
 
 We'll describe each of the three methods we tried to implement and discuss their merits and shortcomings.
 
-\subsection{Keypoint Extraction, Matching and Support Vector Classification}
+\subsection{Keypoint Extraction, Matching and Classification}
 
-One of the first and most naive implementations we tried was identifying keypoints in the training images and trying to match them to keypoints in test images with a brute-force matcher using \textit{opencv}. 
+One of the first and most naive implementations we tried was identifying keypoints in the training images and trying to match them to keypoints in test images with a brute-force matcher using \textit{opencv}. Of course, the largest barrier to this method was the high resolution of most of the images. We downsampled the images and resized them to a uniform size before commencing with this method. 
 
 \subsubsection{Keypoint Extraction}
 
-We tried two main feature extraction methods namely, SIFT and ORB. Thankfully, there exists at least one version of opencv that provides functions for both detection and descriptor compuatation methods. Let's first 
+We tried two main feature extraction methods namely, SIFT and ORB. Thankfully, there exists at least one version of opencv that provides functions for both detection and descriptor computation methods. Keypoints on whale tails are difficult to identify. In \cite{weideman2017integral}, Weideman et al. identified whales mainly by the contour of the edges of their tail flukes. Figure \ref{fig:whalekp} shows examples of whales with SIFT key points on the left and ORB keypoints on the right.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=.5\linewidth]{images/kp_side_by_side.png}
+	\caption{\label{fig:whalekp}: Shows keypoints from the two methods drawn on top of some example whales}
+\end{figure}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=.8\linewidth]{images/orb_matches.png}
+	\caption{\label{fig:orbmatch}: Shows matches between orb keypoints between two tail flukes}
+\end{figure}
+
+\textit{A note on ORB vs SIFT descriptors:} We found, as seen above, that ORB was far more robust to the background noise due to the ocean than SIFT. ORB is also much faster, which for as many training/testing combinations we had, added up. For these reasons we decided to use ORB keypoints and descriptors for our naive implementation. 
+
+\subsubsection{Keypoint Matching}
+
+We used a brute force matcher using \textit{Hamming} distance as is normally done with ORB descriptors to calculate matches. Figure \ref{fig:orbmatch} shows an example match. This is how we were able to match keypoints between two images, but in order to score the matches, we had to compare them across all pairs of testing and training images. How do we score a pair of images? We decided to go with average match distance, since this was invariant to number of matches.
+
+\subsubsection{Classification}
+
+We decided to go with a K-Nearest Neighbor approach, as a first pass. In this approach, we took the average match distance matrix we had across all training and test pairs, and labeled each test image with the mode of the top K closest training images. Due to the low number of representatives for many classes it didn't make sense to have K>1, so we just took the label of the closest training image. Our results are in the Results section.
+
+\subsection{Pretrained ResNet}
+
