@@ -21,7 +21,7 @@ However, we tried these approaches, and found that they performed very poorly on
 		\item Data Augmentation: This consisted of primarily adding images to our dataset.
 		\begin{itemize}
 			\item Randomly Flipped/Rotated/Cropped and Resized copies
-			\item Correcting class imbalances by oversampling under-represented classes. This was done by just performing some random
+			\item Correcting class imbalances by oversampling under-represented classes (a lot of labeled whales had very few examples)
 		\end{itemize}
 		\item Keypoint detection and Matching
 	\end{itemize}
@@ -29,7 +29,6 @@ However, we tried these approaches, and found that they performed very poorly on
 	\begin{itemize}
 		\item K-Nearest Neighbors
 		\item Pretrained ImageNet models (ResNet18, ResNet152 ...)
-		\item Siamese Networks (One-Shot Learning)
 	\end{itemize}
 	\item \textbf{Stage 3: Postprocessing and Testing}
 	\begin{itemize}
@@ -69,5 +68,12 @@ We used a brute force matcher using \textit{Hamming} distance as is normally don
 
 We decided to go with a K-Nearest Neighbor approach, as a first pass. In this approach, we took the average match distance matrix we had across all training and test pairs, and labeled each test image with the mode of the top K closest training images. Due to the low number of representatives for many classes it didn't make sense to have K>1, so we just took the label of the closest training image. Our results are in the Results section.
 
-\subsection{Pretrained ResNet}
+\subsection{Transfer learning using pretrained ResNet}
 
+One of our main avenues of attack in trying to perform the classification task was to use transfer learning using a proven pretrained model. For this, we tried various versions of ResNet - ResNet18, ResNet50, Resnet152 with various layers in each of the models frozen.
+
+\subsubsection{Data preprocessing and augmentation}
+
+The first challenge in processing the images was that they were all of different sizes, and some were colored and some were grayscale. As part of preprocessing, we reduced all of them to a fixed size (for example 224x224 pixels) when loading them into memory. This was necessary since otherwise the images didn't fit in memory, which made the training process go really slow. We tried learning models with both grayscale as well as colored images, and we discovered that ResNet already works with colored images; and performance with colored images being better, we converted the single-channel grayscale images to ``colored'' ones by copying the grayscale channel to two more channels to imitate RGB.
+
+The next major challenge was that the frequency of occurrences of whales (number of classes) in the trainining dataset was highly imbalanced as discussed in section \ref{subs:datachallenges}. To tackle this, we oversampled the underrepresented classes by adding copies of images to the training set to bring the frequency of all classes (whales) to 5 whales.
