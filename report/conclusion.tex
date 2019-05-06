@@ -1,1 +1,11 @@
 \section{Discussion}
+
+We set out to make the leader board in this competition, but this turned out to be an ambitious goal. We settled with seeing how various vision methods perform on this task, and documenting our results. Here we discuss possible explanations and do a rough analysis of our results. 
+
+\subsection{SIFT/ORB and Nearest Neighbors}
+
+This method suffered from several flaws. The poor performance can be attributed to many factors. Firstly, we lost a lot of data when we down-sampled the images to a size small enough to compute key points, matches, and distances in a feasible time period. We estimated that at full resolution, it would take more than 24 straight hours to just compute matches between all pairs of test and train images. Secondly, our distance metric, average Hamming distance across all matches, may be poor. Finally, nearest neighbor classifiers tend to underfit and suffer from the \textit{curse of dimension} even with down-sampled images. This combination of requirements is yet another thing that points to the necessity for deep learning models.
+We didn't see any benefit by increasing the value of K, as for the non-augmented dataset, some training classes have only one example.
+
+\subsection{Transfer Learning}
+
