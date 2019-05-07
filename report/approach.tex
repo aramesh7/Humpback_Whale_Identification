@@ -33,8 +33,7 @@ However, we tried these approaches, and found that they performed very poorly on
 	\end{itemize}
 	\item \textbf{Stage 3: Post-processing and Testing}
 	\begin{itemize}
-		\item Confidence Adjustment to account for unidentified whales
-		\item Classwise analysis
+		\item Labeling unidentified whales and adding top 5 predictions
 	\end{itemize}
 \end{enumerate}
 
@@ -42,7 +41,7 @@ We'll describe each of the three methods we tried to implement and discuss their
 
 \subsection{Keypoint Extraction, Matching and Classification}
 
-One of the first and most naive implementations we tried was identifying keypoints in the training images and trying to match them to keypoints in test images with a brute-force matcher using \textit{opencv}. Of course, the largest barrier to this method was the high resolution of most of the images. We downsampled the images and resized them to a uniform size before commencing with this method. 
+One of the first and most naive implementations we tried was identifying keypoints in the training images and trying to match them to keypoints in test images with a brute-force matcher using OpenCV. Of course, the largest barrier to this method was the high resolution of most of the images. We downsampled the images and resized them to a uniform size before commencing with this method. 
 
 \subsubsection{Keypoint Extraction}
 
@@ -51,7 +50,7 @@ We tried two main feature extraction methods namely, SIFT \cite{lowe2004distinct
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=.5\linewidth]{images/kp_side_by_side.png}
-	\caption{\label{fig:whalekp}Left: SIFT keypoints. Right: ORB keypoints. Keypoints from the two methods drawn on top of some example whales}
+	\caption{\label{fig:whalekp}Left: SIFT keypoints. Right: ORB keypoints. Keypoints from the two methods drawn on some example whales}
 \end{figure}
 \begin{figure}[h]
 	\centering
@@ -67,11 +66,11 @@ We used a brute force matcher using \textit{Hamming} distance as is normally don
 
 \subsubsection{Classification}
 
-We decided to go with a K-Nearest Neighbor approach, as a first pass. In this approach, we took the average match distance matrix we had across all training and test pairs, and labeled each test image with the mode of the top K closest training images. Due to the low number of representatives for many classes it didn't make sense to have K>1, so we just took the label of the closest training image. Our results are in the Results section.
+We decided to go with a K-Nearest Neighbor approach, as a first pass. In this approach, we took the average match distance matrix we had across all training and test pairs, and labeled each test image with the mode of the top K closest training images. Due to the low number of representatives for many classes it didn't make sense to have K$<$1, so we just took the label of the closest training image. Our results are in the Results section.
 
 \subsection{Transfer learning using pretrained ResNet}
 
-One of our main avenues of attack in trying to perform the classification task was to use transfer learning using a proven pretrained model. For this, we tried various versions of ResNet \cite{he2016deep} - ResNet18, ResNet50, Resnet152 with various layers in each of the models frozen.
+One of our main avenues of attack in trying to perform the classification task was to use transfer learning using a proven pretrained model. For this, we tried various versions of ResNet\textsuperscript{\cite{he2016deep}} - ResNet18, ResNet50, Resnet152 with various layers in each of the models frozen.
 
 \subsubsection{Data Preprocessing and augmentation}
 
@@ -85,7 +84,7 @@ We tried primarily to transfer learn using ResNet18 and Resnet152, and various c
 
 \subsection{Bounding Boxes and ResNet50}
 
-Naturally, our main method of noise reduction in the dataset (background ocean, small whale flukes) was to draw and crop to bounding boxes drawn around the animal in the image. Like many people in the original competition, our work was inspired and largely based on the initial work of the winner of the first Humpback Whale challenge, Martin Piotte \cite{martin}, who trained a convolutional network model to estimate bounding boxes on the dataset.\\
+Our main method of noise reduction in the dataset (background ocean, small whale flukes) was to draw and crop to bounding boxes drawn around the whale in the image. Like many people in the original competition, our work was inspired and largely based on the initial work of the winner of the first Humpback Whale challenge, Martin Piotte \textsuperscript{\cite{martin}}, who trained a convolutional network model to estimate bounding boxes on the dataset.\\
 
 Our architecture is loosely based on an adaptation of that network where we add 4 layers after a backbone of ResNet50. Table \ref{tab:bbres} shows a summary of the architecture we used. 
 
@@ -102,4 +101,4 @@ Our architecture is loosely based on an adaptation of that network where we add 
 	\caption{\label{tab:bbres} Bounding Box Model Architecture}
 \end{table}
 
-In addition to bounding boxes, we tried to further make the data more uniform by using a reference image in the training dataset for image alignment. Such a technique is used in facial detection and recognition. We computed descriptors and matched keypoints to compute a homography for each training image with this reference image, however when we applied the homographies to the target images, they deformed in a way we could not debug. 
+In addition to bounding boxes, we tried to further make the data more uniform by using a reference image in the training dataset for image alignment. Such a technique is used in facial detection and recognition. We computed descriptors and matched keypoints to compute a homography for each training image with this reference image. 

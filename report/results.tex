@@ -33,6 +33,5 @@ We tried lower learning rates in the range [0.001, 0.01], but these learned too 
 
 \subsection{Bounding Boxes and ResNet50}
 
-Here our model learned much more quickly, but
-it became tough for us to reduce overfitting on this model. Partially freezing some of the layers did not work as expected. However, despite all this we recieved a modest validation bump of about 3-5\% on average from the Transfer learning models. Our test accuracy however, was not too much higher at 16\%. This probably had to do with tuning hyperparameters. This approach requires a little more understanding on our part. 
+It was challenging for us to correctly apply homographies computed. In large part this might be because there was too much noise in the data, and the computed homographies were not very good ones. Here our model learned much more quickly, but it became tough for us to reduce overfitting. Partially freezing some of the layers did not work as expected. However, despite all this we recieved a modest validation bump of about 3-5\% on average from the Transfer learning models. Our test accuracy however, was not too much higher at 16\%. This probably had to do with tuning hyperparameters. This approach requires a little more understanding on our part. 
 
