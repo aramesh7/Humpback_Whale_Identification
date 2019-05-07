@@ -72,7 +72,7 @@ We decided to go with a K-Nearest Neighbor approach, as a first pass. In this ap
 
 One of our main avenues of attack in trying to perform the classification task was to use transfer learning using a proven pretrained model. For this, we tried various versions of ResNet - ResNet18, ResNet50, Resnet152 with various layers in each of the models frozen.
 
-\subsubsection{Data preprocessing and augmentation}
+\subsubsection{Data Preprocessing and augmentation}
 
 The first challenge in processing the images was that they were all of different sizes, and some were colored and some were grayscale. As part of preprocessing, we reduced all of them to a fixed size (for example 224x224 pixels) when loading them into memory. This was necessary since otherwise the images didn't fit in memory, which made the training process go really slow. We tried learning models with both grayscale as well as colored images, and we discovered that ResNet already works with colored images; and performance with colored images being better, we converted the single-channel grayscale images to ``colored'' ones by copying the grayscale channel to two more channels to imitate RGB.
 

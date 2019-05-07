@@ -1,1 +1,16 @@
 \section{Results}
+
+\subsection{K-Nearest Neighbors}
+
+The first of our 3 methods performed quite poorly. Table \ref{fig:knn} shows the test accuracy for our keypoint extracted nearest neighbor classifiers. We tried K values ranging from 1 to 100 but found as expected that the elbow point for this dataset was quite low. We concluded that the best value was actually 1 neighbor.
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|}\hline
+	\textbf{K value} & \textbf{Test Accuracy}\\ \hline
+	 1 & 0.0965\\ \hline
+	 2  & 0.084\\ \hline
+	5  & 0.0733\\ \hline
+	10  & 0.04\\ \hline
+\end{tabular}
+\caption{\label{fig:knn} Shows the accuracy for various values of K in the ORB-Nearest Neighbors}
+\end{table}
