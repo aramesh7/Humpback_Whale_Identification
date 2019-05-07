@@ -16,16 +16,7 @@ The dataset is the HappyWhale dataset of images of humpback whales' tails, and o
 		w\_0369a5c  & 61\\ \hline
 		...  & ...\\ \hline
 	\end{tabular}
-%	\begin{tabular}{|p{2cm}|p{2.5cm}|}\hline
-%		\textbf{Threshold} & \textbf{\% less than threshold}\\ \hline
-%		1  & 0.0 \\ \hline
-%		2  & 41.41\\ \hline
-%		3  & 67.09\\ \hline
-%		4  & 78.84\\ \hline
-%		10 & 94.52\\ \hline
-%	\end{tabular}
 	\caption{\label{tab:counts}Class imbalances near the upper end}
-%	\caption{\label{tab:unders}Shows the under-representation of several classes in the data}
 \end{table}
 
 \begin{figure}[ht]
@@ -59,3 +50,13 @@ It is obvious that the problem is an instance of image classification with a lar
 \end{figure}
 
 There were also some challenges that had to do with the images themselves, namely, they were not of uniform size, nor were they all color or grayscale. It is quite a heterogeneous dataset. Figure \ref{fig:whale} shows four examples of images whose widths have been made uniform for display purposes. In reality, they all have very different dimensions, and some have fewer channels than others.\\
+
+\subsection{The Evaluation Criterion}
+
+The evaluation criterion for kaggle submissions in this competition was Mean Average Precision for upto 5 predictions. The submission format was 5 ranked labels for each of the test images. The submissions were scored using the following criterion.\\
+
+$$
+MAP5 = \frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{min(n,5)} P(j)
+$$
+
+$P(j)$ is the precision (percent correct predictions) at cutoff k. This means that only the predictions from position $1$ to $j$ are considered. Here $n$ is the number of submitted predictions for that image.  

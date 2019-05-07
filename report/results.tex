@@ -32,3 +32,7 @@ The table below highlights our performance with some specified values of the typ
 We tried lower learning rates in the range [0.001, 0.01], but these learned too slowly to produce good results. For example, running ResNet18 with learning rate $lr = 0.001$ and training only the fully-connected layer, after 200+ epochs our model only got to around 50\% accuracy and 32\% validation accuracy. That being said, we think that lower learning rates do overall produce better results. Unforunately, we were unable to record exact results of a lot of earlier runs with fewer preprocessing steps due to misconfigurations and time constraints. One of the higher test scores that we verifiably achieved was 15.716\% on the public leaderboard, with an objectively weaker preprocessing pipeline. Also, further training of this same model reduced the accuracy, presumably because of overfitting.
 
 \subsection{Bounding Boxes and ResNet50}
+
+Here our model learned much more quickly, but
+it became tough for us to reduce overfitting on this model. Partially freezing some of the layers did not work as expected. However, despite all this we recieved a modest validation bump of about 3-5\% on average from the Transfer learning models. Our test accuracy however, was not too much higher at 16\%. This probably had to do with tuning hyperparameters. This approach requires a little more understanding on our part. 
+
