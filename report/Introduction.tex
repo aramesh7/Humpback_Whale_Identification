@@ -14,6 +14,7 @@ The dataset is the HappyWhale dataset of images of humpback whales' tails, and o
 		w\_9b5109b  & 65\\ \hline
 		w\_9c506f6  & 62\\ \hline
 		w\_0369a5c  & 61\\ \hline
+		...  & ...\\ \hline
 	\end{tabular}
 %	\begin{tabular}{|p{2cm}|p{2.5cm}|}\hline
 %		\textbf{Threshold} & \textbf{\% less than threshold}\\ \hline
@@ -23,7 +24,7 @@ The dataset is the HappyWhale dataset of images of humpback whales' tails, and o
 %		4  & 78.84\\ \hline
 %		10 & 94.52\\ \hline
 %	\end{tabular}
-	\caption{\label{tab:counts}Shows the class imbalance near the upper end}
+	\caption{\label{tab:counts}Class imbalances near the upper end}
 %	\caption{\label{tab:unders}Shows the under-representation of several classes in the data}
 \end{table}
 
@@ -35,24 +36,26 @@ The dataset is the HappyWhale dataset of images of humpback whales' tails, and o
 
 It is obvious that the problem is an instance of image classification with a large number of classes, however, when we took a look at the dataset, we discovered that there were large class imbalances in the dataset. For the remainder of this report when talking about ``classes'' we refer to individual whales. There were over 9,000 instances of unknown whales, and only 73 instances of the most frequent known whale. Table \ref{tab:counts} shows the value counts of the first few most common whales in the training set. Here we see our first problem. The \textit{new\_whale} class is vastly over-represented. Figure \ref{fig:whalefreq} shows our second problem. The value counts of the whale classes falls off exponentially. In particular, more than \textit{half} the classes have less than 5 examples, and for over 2,000 identified whales there is only one example image. This was a challenge we had to overcome with data augmentation, as described in later sections.\\
 
+% \captionsetup[subfigure]{justification=raggedright}
+
 \begin{figure}[h!]
 	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=.7\linewidth]{images/w_d3b46e7.png}
+		\includegraphics[width=.7\textwidth]{images/w_d3b46e7.png}
 		\caption{Whale w\_d3b46e7}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=.7\linewidth]{images/w_581ba42.png}
+		\includegraphics[width=.7\textwidth]{images/w_581ba42.png}
 		\caption{Whale w\_581ba42}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=.7\linewidth]{images/new_whale.png}
+		\includegraphics[width=.7\textwidth]{images/new_whale.png}
 		\caption{Unidentified Whale}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
-		\includegraphics[width=.7\linewidth]{images/w_dd944b7.png}
+		\includegraphics[width=.7\textwidth]{images/w_dd944b7.png}
 		\caption{Whale w\_dd944b7}
 	\end{subfigure}
-	\caption{\label{fig:whale}Shows the variety in the type of data}
+	\caption{\label{fig:whale}Variety in data}
 \end{figure}
 
 There were also some challenges that had to do with the images themselves, namely, they were not of uniform size, nor were they all color or grayscale. It is quite a heterogeneous dataset. Figure \ref{fig:whale} shows four examples of images whose widths have been made uniform for display purposes. In reality, they all have very different dimensions, and some have fewer channels than others.\\

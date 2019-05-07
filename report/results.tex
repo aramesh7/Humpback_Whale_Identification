@@ -1,5 +1,4 @@
 \section{Results}
-
 \subsection{K-Nearest Neighbors}
 
 The first of our 3 methods performed quite poorly. Table \ref{fig:knn} shows the test accuracy for our keypoint extracted nearest neighbor classifiers. We tried K values ranging from 1 to 100 but found as expected that the elbow point for this dataset was quite low. We concluded that the best value was actually 1 neighbor.
@@ -14,3 +13,21 @@ The first of our 3 methods performed quite poorly. Table \ref{fig:knn} shows the
 \end{tabular}
 \caption{\label{fig:knn} Shows the accuracy for various values of K in the ORB-Nearest Neighbors}
 \end{table}
+
+\subsection{Transfer learning}
+
+The table below highlights our performance with some specified values of the type of model, number of layers used, number of epochs. These results were obtained with a learning rate $lr = 0.01$.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|}\hline
+		\textbf{Model} & \textbf{Layers} & \textbf{\# epochs} & \textbf{Train accuracy} & \textbf{Val accuracy} & \textbf{Test accuracy}\\ \hline
+		ResNet18  & Last only & 50 & 54.33\% & 24\% & 3.61\%\\ \hline
+		ResNet18  & All & 20 & 81.16\% & 58\% & 8.491\%\\ \hline
+		ResNet152 & All & 15 & 84.19\% & 55\% & -\\ \hline
+	\end{tabular}
+	\caption{\label{tab:transferresults}Results for transfer learning with various techniques}
+\end{table}
+
+We tried lower learning rates in the range [0.001, 0.01], but these learned too slowly to produce good results. For example, running ResNet18 with learning rate $lr = 0.001$ and training only the fully-connected layer, after 200+ epochs our model only got to around 50\% accuracy and 32\% validation accuracy. That being said, we think that lower learning rates do overall produce better results. Unforunately, we were unable to record exact results of a lot of earlier runs with fewer preprocessing steps due to misconfigurations and time constraints. One of the higher test scores that we verifiably achieved was 15.716\% on the public leaderboard, with an objectively weaker preprocessing pipeline. This sort of demonstrates that additional preprocessing if not done correctly, or if not trained enough can actually result in worse results, as is evidenced by our high train and validation accuracies compared to the test accuracy in several configurations.
+

@@ -1,7 +1,7 @@
-\section{Approaches and Methods}
+\section{Methods}
 
 \subsection{Overview of Methods}
-Our plan of attack for this task was to try a few different types of methods and see which worked the best. In our proposal, we wanted to try the following:
+Our plan of attack for this task was to try a few different types of methods and see which worked the best. In our proposal, we proposed the following:
 \begin{itemize}
 	\item Probabilistic models like Naive Bayes.
 	\item Decision forests (Random Forest Classifiers)
@@ -50,12 +50,12 @@ We tried two main feature extraction methods namely, SIFT and ORB. Thankfully, t
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=.5\linewidth]{images/kp_side_by_side.png}
-	\caption{\label{fig:whalekp}: Shows keypoints from the two methods drawn on top of some example whales}
+	\caption{\label{fig:whalekp}Left: SIFT keypoints. Right: ORB keypoints. Keypoints from the two methods drawn on top of some example whales}
 \end{figure}
-\begin{figure}[ht]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=.8\linewidth]{images/orb_matches.png}
-	\caption{\label{fig:orbmatch}: Shows matches between orb keypoints between two tail flukes}
+	\caption{\label{fig:orbmatch}Matches between ORB keypoints between two tail flukes}
 \end{figure}
 
 \textit{A note on ORB vs SIFT descriptors:} We found, as seen above, that ORB was far more robust to the background noise due to the ocean than SIFT. ORB is also much faster, which for as many training/testing combinations we had, added up. For these reasons we decided to use ORB keypoints and descriptors for our naive implementation. 
@@ -77,3 +77,7 @@ One of our main avenues of attack in trying to perform the classification task w
 The first challenge in processing the images was that they were all of different sizes, and some were colored and some were grayscale. As part of preprocessing, we reduced all of them to a fixed size (for example 224x224 pixels) when loading them into memory. This was necessary since otherwise the images didn't fit in memory, which made the training process go really slow. We tried learning models with both grayscale as well as colored images, and we discovered that ResNet already works with colored images; and performance with colored images being better, we converted the single-channel grayscale images to ``colored'' ones by copying the grayscale channel to two more channels to imitate RGB.
 
 The next major challenge was that the frequency of occurrences of whales (number of classes) in the trainining dataset was highly imbalanced as discussed in section \ref{subs:datachallenges}. To tackle this, we oversampled the underrepresented classes by adding copies of images to the training set to bring the frequency of all classes (whales) to 5 whales.
+
+\subsubsection{Models}
+
+We tried primarily to transfer learn using ResNet18 and Resnet152, and various configurations of frozen layers, learning rates, and preprocessing (without and with data augmentation). More information in the Results and Discussion sections.
