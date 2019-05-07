@@ -9,3 +9,6 @@ We didn't see any benefit by increasing the value of K, as for the non-augmented
 
 \subsection{Transfer Learning}
 
+Transfer learning using even state-of-the-art pretrained networks has limitations; on the whale detection problem posed in this project, we achieved only mediocre success. The biggest reason for this is that ResNets which are trained on ImageNet, although well-trained in recognizing objects in images in general, are not trained for recognizing minute differences in the unique shapes of whale flukes, which is the main information in this dataset's images. Significant noise is caused by the waves in the water, similar to how it's picked up by the keypoint detectors discussed above. A lot of successful attempts at this whale classification task thus use bounding boxes to limit computational analysis of neural nets or other models to only the whale flukes.
+
+The various preprocessing techniques we employed were educational in that they demonstrate additional preprocessing if not done correctly, or if not trained enough can actually result in worse results, as is evidenced by our high train and validation accuracies compared to the test accuracy in several configurations. The various half-frozen network configurations we tried yielded worse results than just training the last fully-connected (FC) layer, or fine-tuning the entire network.
