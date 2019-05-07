@@ -81,3 +81,7 @@ The next major challenge was that the frequency of occurrences of whales (number
 \subsubsection{Models}
 
 We tried primarily to transfer learn using ResNet18 and Resnet152, and various configurations of frozen layers, learning rates, and preprocessing (without and with data augmentation). More information in the Results and Discussion sections.
+
+\subsection{Bounding Boxes and ResNet50}
+
+Naturally, our main method of noise reduction in the dataset (background ocean, small whale flukes) was to draw and crop to bounding boxes drawn around the animal in the image. Our work was inspired and largely based on the work of the winner of the first Humpback Whale challenge, Martin Piotte.
